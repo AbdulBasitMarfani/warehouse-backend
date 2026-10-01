@@ -4,6 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
+import { UsersModule } from './modules/users/users.module.js';
+import { AuthModule } from './modules/auth/auth.module.js';
+import { SnakeNamingStrategy } from './database/snake-naming.strategy.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -23,6 +26,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
         database: config.get<string>('DB_NAME'),
         autoLoadEntities: true,
         synchronize: true,
+        namingStrategy: new SnakeNamingStrategy(),
       }),
     }),
     ObserveModule.forRoot({
@@ -30,6 +34,8 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       appSecret: 'YOUR_APP_SECRET',
       serviceId: 'warehouse-backend',
     }),
+    UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
