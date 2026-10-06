@@ -7,6 +7,8 @@ import { AppService } from './app.service.js';
 import { UsersModule } from './modules/users/users.module.js';
 import { AuthModule } from './modules/auth/auth.module.js';
 import { SnakeNamingStrategy } from './database/snake-naming.strategy.js';
+import { VendorsModule } from './modules/vendors/vendors.module.js';
+import { ProductModule } from './modules/product/product.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -36,6 +38,8 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     }),
     UsersModule,
     AuthModule,
+    VendorsModule,
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],
